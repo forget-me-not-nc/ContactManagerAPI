@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33414.496
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ContactManagerAPI", "ContactManagerAPI\ContactManagerAPI.csproj", "{ADC482AF-B6B5-4DBD-814F-280EBD60FCF7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{5E5E0B8C-E3BE-4EFC-9C89-6D71C00C2904}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{ADC482AF-B6B5-4DBD-814F-280EBD60FCF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADC482AF-B6B5-4DBD-814F-280EBD60FCF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADC482AF-B6B5-4DBD-814F-280EBD60FCF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E5E0B8C-E3BE-4EFC-9C89-6D71C00C2904}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E5E0B8C-E3BE-4EFC-9C89-6D71C00C2904}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E5E0B8C-E3BE-4EFC-9C89-6D71C00C2904}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E5E0B8C-E3BE-4EFC-9C89-6D71C00C2904}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
