@@ -9,6 +9,8 @@ import { ContactInfoService } from '../services/contact-info.service';
 })
 export class MainPageComponent {
   contacts: ContactInfoModel[] = [];
+  showDialog: boolean = false;
+
 
   constructor(private contactInfoService: ContactInfoService) {
     this.retrieveContactInfos();
@@ -20,8 +22,8 @@ export class MainPageComponent {
     });
   }
 
-  updateListMany(contact: ContactInfoModel[]) {
-    contact.forEach(el => this.contacts.push(el));
+  updateListMany(newContacts: ContactInfoModel[]) {
+    this.contacts = [...this.contacts, ...newContacts];
   }
 
   deleteContact(id: number) {

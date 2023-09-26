@@ -11,6 +11,9 @@ import { MainPageComponent } from './main-page/main-page.component';
 import { TableComponent } from './main-page/table-component/table.component';
 import { CsvImportComponent } from './main-page/csv-import-button/csv-import.component';
 import { ButtonModule } from 'primeng/button';
+import { CheckboxModule } from 'primeng/checkbox';
+import { CalendarModule } from 'primeng/calendar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { ButtonModule } from 'primeng/button';
     TableModule,
     FormsModule,
     ButtonModule,
-    FileUploadModule, 
+    FileUploadModule,
+    CheckboxModule,
+    BrowserAnimationsModule, 
+    CalendarModule,
     RouterModule.forRoot([
       { path: '', component: MainPageComponent, pathMatch: 'full' },
     ])

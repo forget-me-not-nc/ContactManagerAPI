@@ -6,10 +6,22 @@ import { AppModule } from './app.module';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { FileUploadModule } from 'primeng/fileupload';
-import { NgModel } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { CheckboxModule } from 'primeng/checkbox';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
-    imports: [AppModule, ServerModule, ModuleMapLoaderModule, TableModule, ButtonModule, FileUploadModule],
+    imports: [
+      AppModule,
+      ServerModule,
+      ModuleMapLoaderModule,
+      TableModule,
+      ButtonModule, 
+      FileUploadModule,
+      BrowserAnimationsModule,
+      CheckboxModule,
+      CalendarModule
+    ],
     bootstrap: [AppComponent],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
