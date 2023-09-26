@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Input, Output } from "@angular/core";
-import { SelectItem } from "primeng/api";
+import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
+import { Table } from "primeng/table";
 import { ContactInfoModel } from "src/app/models/contact-info.model";
 import { UpdateContactInfoModel } from "src/app/models/update-contact-info.model";
 import { ContactInfoService } from "src/app/services/contact-info.service";
@@ -15,6 +15,8 @@ export class TableComponent{
   @Input() contacts: ContactInfoModel[] = [];
   @Output() deleteContact = new EventEmitter<number>();
 
+  @ViewChild('dataTable') dt: Table;
+
   delete(id: number) {
     this.deleteContact.emit(id);
   }
@@ -29,5 +31,9 @@ export class TableComponent{
       salary: contact.salary
     };
     this.contactInfoService.update(model).subscribe();
+  }
+
+  applyFilterGlobal(event: any, stringVal: string) {
+    this.dt.filterGlobal((event.target as HTMLInputElement).value, stringVal);
   }
 }
