@@ -20,8 +20,8 @@ export class MainPageComponent {
     });
   }
 
-  updateList(contact: ContactInfoModel) {
-    this.contacts.push(contact);
+  updateListMany(contact: ContactInfoModel[]) {
+    contact.forEach(el => this.contacts.push(el));
   }
 
   deleteContact(id: number) {

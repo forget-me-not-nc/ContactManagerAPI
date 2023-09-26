@@ -39,6 +39,32 @@ namespace BLL.Services.ContactInfoServices
             return _mapper.Map<ContactResponse>(newContact);
         }
 
+        public async Task<IEnumerable<ContactResponse>> CreateRangeAsync(IEnumerable<CreateContactRequest> entities)
+        {
+            var createdTasks = new List<ContactResponse>();
+            var exceptions = new List<Exception>();
+
+            foreach (var entity in entities)
+            {
+                try
+                {
+                    var task = await CreateAsync(entity);
+                    createdTasks.Add(task);
+                }
+                catch (Exception ex)
+                { 
+                    exceptions.Add(ex);
+                };
+            }
+
+            if(exceptions.Count > 0)
+            {
+                throw new AggregateException($"Some exceptions occurred! Rows affected: {exceptions.Count}", exceptions);
+            }
+
+            return createdTasks;
+        }
+
         public async Task DeleteAsync(int id)
         {
             await _contactInfoRepo.DeleteAsync(id);

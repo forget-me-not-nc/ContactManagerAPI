@@ -12,6 +12,8 @@ namespace BLL.Services.ContactInfoServices
     public interface IContactInfoService
     {
         Task<IEnumerable<ContactResponse>> GetAllAsync();
+
+        Task<IEnumerable<ContactResponse>> CreateRangeAsync(IEnumerable<CreateContactRequest> entities);
         Task<ContactResponse> GetAsync(int id);
 
         Task<bool> IsContactValid(ContactValidation contact);

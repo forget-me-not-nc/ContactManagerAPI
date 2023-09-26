@@ -1,2 +1,3 @@
-<app-table-component [contacts]="contacts" (deleteContact)="deleteContact($event)">
+<app-table-component [(ngModel)]="contacts" (deleteContact)="deleteContact($event)">
 </app-table-component>
+<app-csv-import (updateList)="updateListMany($event)"></app-csv-import>

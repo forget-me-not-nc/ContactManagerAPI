@@ -4,6 +4,7 @@ using DAL.Repos.ContactInfoRepo;
 using BLL.Configs.AutoMapper;
 using BLL.Services.ValidatorService.ContactInfoValidator;
 using BLL.Services.ContactInfoServices;
+using BLL.Services.ImportServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,6 +21,7 @@ builder.Services.AddAutoMapper(p => p.AddProfile(new AutoMapperProfile()));
 builder.Services.AddScoped<IContactInfoRepo, ContactInfoRepo>();
 builder.Services.AddScoped<IContactInfoValidator, ContactInfoValidator>();
 builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
+builder.Services.AddScoped<ICSVImporter, CSVImporter>();
 
 builder.Services.AddControllersWithViews();
 

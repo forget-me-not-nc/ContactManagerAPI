@@ -1,0 +1,20 @@
+<div class="upload-container">
+  <p-fileUpload
+    #fileUpload
+    name="myfile[]"
+    [url]="uploadUrl"
+    [multiple]="true"
+    accept=".csv"
+    [maxFileSize]="maxFileSize"
+    (onUpload)="onFileUpload($event)"
+    (onSelect)="onFileSelect($event)"
+  >
+    <ng-template pTemplate="toolbar">
+      <div class="py-3">Upload CSV Files</div>
+    </ng-template>
+    <ng-template let-file pTemplate="file">
+      <div>{{fileName}}</div>
+    </ng-template>
+  </p-fileUpload>
+</div>
+
