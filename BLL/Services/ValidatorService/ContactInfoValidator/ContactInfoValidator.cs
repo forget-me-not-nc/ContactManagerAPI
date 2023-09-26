@@ -20,7 +20,7 @@ namespace BLL.Services.ValidatorService.ContactInfoValidator
 
         public void DateOfBirthValidation(DateTime dateOfBirth)
         {
-            if(DateTime.Now.Year - dateOfBirth.Year > 90 && DateTime.Now.Year - dateOfBirth.Year <= 14)
+            if(DateTime.Now.Year - dateOfBirth.Year > 90 || DateTime.Now.Year - dateOfBirth.Year <= 14)
                 throw new Exception("Invalid Date of Birth!");
         }
 
@@ -30,9 +30,6 @@ namespace BLL.Services.ValidatorService.ContactInfoValidator
 
             if (!Regex.IsMatch(phone, pattern))
                 throw new Exception("Invalif phone number!");
-
-            if (_contactInfoRepo.GetContactByPhone(phone) != null)
-                throw new Exception("Contact with such Phone number alreasy exist!");
         }
 
         public void SalaryValidation(decimal salary)

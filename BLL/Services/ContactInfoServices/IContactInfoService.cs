@@ -1,4 +1,5 @@
 ﻿using BLL.DTOs.ContacInfoDTOs;
+using BLL.DTOs.ValidationDTOs.ContactValidationDTOs;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,8 @@ namespace BLL.Services.ContactInfoServices
     {
         Task<IEnumerable<ContactResponse>> GetAllAsync();
         Task<ContactResponse> GetAsync(int id);
+
+        Task<bool> IsContactValid(ContactValidation contact);
 
         Task<ContactInfo> GetContactInfoByPhone(string phone);
 

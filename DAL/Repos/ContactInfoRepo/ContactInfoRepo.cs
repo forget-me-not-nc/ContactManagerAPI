@@ -14,7 +14,7 @@ namespace DAL.Repos.ContactInfoRepo
         public async Task<ContactInfo> GetContactByPhone(string phoneNumber)
         {
             return await _context.Infos
-                .Where(e => e.Phone.Equals(phoneNumber, StringComparison.OrdinalIgnoreCase))
+                .Where(e => e.Phone.Equals(phoneNumber))
                 .FirstOrDefaultAsync();
         }
     }

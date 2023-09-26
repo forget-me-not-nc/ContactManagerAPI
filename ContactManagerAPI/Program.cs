@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using DAL.Repos.ContactInfoRepo;
 using BLL.Configs.AutoMapper;
 using BLL.Services.ValidatorService.ContactInfoValidator;
+using BLL.Services.ContactInfoServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +19,9 @@ builder.Services.AddAutoMapper(p => p.AddProfile(new AutoMapperProfile()));
 
 builder.Services.AddScoped<IContactInfoRepo, ContactInfoRepo>();
 builder.Services.AddScoped<IContactInfoValidator, ContactInfoValidator>();
+builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
+
+builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
@@ -32,8 +36,13 @@ app.UseCors(x => x
 
 app.UseStaticFiles();
 app.UseRouting();
-app.MapControllers();
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Redirect}/{action=Index}/{id?}");
+});
 
-app.MapFallbackToFile("index.html"); ;
+app.MapFallbackToFile("index.html");
 
 app.Run();

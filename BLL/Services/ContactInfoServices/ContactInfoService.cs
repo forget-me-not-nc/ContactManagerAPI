@@ -59,19 +59,19 @@ namespace BLL.Services.ContactInfoServices
             return _mapper.Map<ContactResponse>(user);
         }
 
-        public Task<ContactInfo> GetContactInfoByPhone(string phone)
+        public async Task<ContactInfo> GetContactInfoByPhone(string phone)
         {
-            return _contactInfoRepo.GetContactByPhone(phone);
+            return await _contactInfoRepo.GetContactByPhone(phone);
         }
 
-        public Task<bool> IsContactValid(ContactValidation contact)
+        public async Task<bool> IsContactValid(ContactValidation contact)
         {
             _contactInfoValidator.IsValid(contact);
 
-            if (GetContactInfoByPhone(contact.Phone) != null)
+            if (await GetContactInfoByPhone(contact.Phone) != null)
                 throw new Exception("Contact with such Phone number alreasy exist!");
 
-            return Task.FromResult(true);
+            return await Task.FromResult(true);
         }
 
         public async Task<ContactResponse> UpdateAsync(UpdateContactRequest entity)
