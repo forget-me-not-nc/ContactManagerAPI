@@ -5,6 +5,7 @@ using BLL.Configs.AutoMapper;
 using BLL.Services.ValidatorService.ContactInfoValidator;
 using BLL.Services.ContactInfoServices;
 using BLL.Services.ImportServices;
+using BLL.Configs.Converter;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,7 +24,11 @@ builder.Services.AddScoped<IContactInfoValidator, ContactInfoValidator>();
 builder.Services.AddScoped<IContactInfoService, ContactInfoService>();
 builder.Services.AddScoped<ICSVImporter, CSVImporter>();
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.Converters.Add(new DateOnlyConverter());
+    }); ;
 
 var app = builder.Build();
 

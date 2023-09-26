@@ -18,9 +18,11 @@ namespace BLL.Services.ValidatorService.ContactInfoValidator
             _contactInfoRepo = contactInfoRepo;
         }
 
-        public void DateOfBirthValidation(DateTime dateOfBirth)
+        public void DateOfBirthValidation(DateOnly dateOfBirth)
         {
-            if(DateTime.Now.Year - dateOfBirth.Year > 90 || DateTime.Now.Year - dateOfBirth.Year <= 14)
+            DateOnly currentDate = DateOnly.FromDateTime(DateTime.Now);
+
+            if (currentDate.Year - dateOfBirth.Year > 90 || currentDate.Year - dateOfBirth.Year <= 14)
                 throw new Exception("Invalid Date of Birth!");
         }
 

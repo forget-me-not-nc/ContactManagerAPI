@@ -10,7 +10,7 @@ namespace BLL.DTOs.ValidationDTOs.ContactValidationDTOs
     {
         public int Id { get; set; }
         public string Phone { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public decimal Salary { get; set; }
     }
 }

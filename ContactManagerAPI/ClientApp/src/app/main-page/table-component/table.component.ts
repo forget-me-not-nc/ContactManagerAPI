@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { SelectItem } from "primeng/api";
 import { ContactInfoModel } from "src/app/models/contact-info.model";
+import { UpdateContactInfoModel } from "src/app/models/update-contact-info.model";
+import { ContactInfoService } from "src/app/services/contact-info.service";
 
 @Component({
   selector: 'app-table-component',
@@ -8,29 +10,24 @@ import { ContactInfoModel } from "src/app/models/contact-info.model";
   styleUrls: ['./table.component.css']
 })
 export class TableComponent{
-
-  statuses!: SelectItem[];
+  constructor(private contactInfoService: ContactInfoService) {}
 
   @Input() contacts: ContactInfoModel[] = [];
-  editingContacts: { [s: number]: ContactInfoModel } = {};
-
-
   @Output() deleteContact = new EventEmitter<number>();
 
   delete(id: number) {
     this.deleteContact.emit(id);
   }
 
-  onRowEditInit(contact: ContactInfoModel) {
-    this.editingContacts[contact.id] = { ...contact };
-  }
-
   onRowEditSave(contact: ContactInfoModel) {
-    
-  }
-
-  onRowEditCancel(contact: ContactInfoModel, index: number) {
-    this.contacts[index] = this.editingContacts[contact.id];
-    delete this.editingContacts[contact.id];
+    var model: UpdateContactInfoModel = {
+      id: contact.id,
+      dateOfBirth: contact.dateOfBirth,
+      phone: contact.phone,
+      isMarried: contact.isMarried,
+      name: contact.name,
+      salary: contact.salary
+    };
+    this.contactInfoService.update(model).subscribe();
   }
 }

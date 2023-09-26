@@ -18,7 +18,10 @@ export class MainPageComponent {
 
   retrieveContactInfos() {
     this.contactInfoService.getAll().subscribe((resp) => {
-      this.contacts = resp;
+      this.contacts = resp.map(el => {
+        el.dateOfBirth = new Date(el.dateOfBirth)
+        return el;
+      });
     });
   }
 

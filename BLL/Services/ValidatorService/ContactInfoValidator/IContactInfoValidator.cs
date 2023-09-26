@@ -10,7 +10,7 @@ namespace BLL.Services.ValidatorService.ContactInfoValidator
     public interface IContactInfoValidator: IValidator<ContactValidation>
     {
         public void PhoneValidation(string phone);
-        public void DateOfBirthValidation(DateTime dateOfBirth);
+        public void DateOfBirthValidation(DateOnly dateOfBirth);
         public void SalaryValidation(decimal salary);
     }
 }
