@@ -8,6 +8,7 @@ namespace BLL.DTOs.ValidationDTOs.ContactValidationDTOs
 {
     public class ContactValidation
     {
+        public int Id { get; set; }
         public string Phone { get; set; }
         public DateTime DateOfBirth { get; set; }
         public decimal Salary { get; set; }

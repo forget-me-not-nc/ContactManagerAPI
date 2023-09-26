@@ -16,6 +16,7 @@ namespace DAL.Repos
         {
             _context = context;
         }
+
         public async Task<TEntity> CreateAsync(TEntity entity)
         {
             return (await _context.Set<TEntity>().AddAsync(entity)).Entity;
@@ -26,13 +27,13 @@ namespace DAL.Repos
 
         public async Task CreateRangeAsync(IEnumerable<TEntity> entities)
         {
-            await Task.Run(() => _context.Set<TEntity>().AddRangeAsync(entities));
+            await _context.Set<TEntity>().AddRangeAsync(entities);
         }
 
         public async Task DeleteAsync(int id)
         {
             var entity = await GetByIdAsync(id);
-            await Task.Run(() => _context.Set<TEntity>().Remove(entity));
+            await Task.FromResult(_context.Set<TEntity>().Remove(entity));
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -50,10 +51,12 @@ namespace DAL.Repos
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            return await Task.Run(() =>
-            {
-                return _context.Set<TEntity>().Update(entity).Entity;
-            });
+            return await Task.FromResult(_context.Set<TEntity>().Update(entity).Entity);
+        }
+
+        public async Task Detache(TEntity entity)
+        {
+            await Task.FromResult(_context.Entry(entity).State = EntityState.Detached);
         }
     }
 }

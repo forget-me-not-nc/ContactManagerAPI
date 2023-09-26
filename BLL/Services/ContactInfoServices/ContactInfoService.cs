@@ -68,8 +68,30 @@ namespace BLL.Services.ContactInfoServices
         {
             _contactInfoValidator.IsValid(contact);
 
-            if (await GetContactInfoByPhone(contact.Phone) != null)
-                throw new Exception("Contact with such Phone number alreasy exist!");
+            if (contact.Id > 0)
+            {
+                var existingContact = await _contactInfoRepo.GetByIdAsync(contact.Id);
+
+                if (existingContact != null)
+                {
+                    if (!existingContact.Phone.Equals(contact.Phone))
+                    {
+                        if (await GetContactInfoByPhone(contact.Phone) != null)
+                        {
+                            throw new Exception("Contact with such Phone number already exists!");
+                        }
+                    }
+
+                   await _contactInfoRepo.Detache(existingContact);
+                }
+            }
+            else
+            {
+                if (await GetContactInfoByPhone(contact.Phone) != null)
+                {
+                    throw new Exception("Contact with such Phone number already exists!");
+                }
+            }
 
             return await Task.FromResult(true);
         }
@@ -78,6 +100,7 @@ namespace BLL.Services.ContactInfoServices
         {
             await IsContactValid(new ContactValidation
             {
+                Id = entity.Id,
                 DateOfBirth = entity.DateOfBirth,
                 Phone = entity.Phone,
                 Salary = entity.Salary,

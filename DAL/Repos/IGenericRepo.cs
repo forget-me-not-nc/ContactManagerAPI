@@ -13,6 +13,7 @@ namespace DAL.Repos
         Task<T> CreateAsync(T entity);
         Task CreateRangeAsync(IEnumerable<T> entities);
         Task<T> UpdateAsync(T entity);
+        Task Detache(T entity);
         Task DeleteAsync(int id);
         Task SaveChangesAsync();
     }
